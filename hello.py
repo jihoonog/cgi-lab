@@ -29,7 +29,7 @@ print("<p> HTTP_USER_AGENT: {}</p>".format(os.environ["HTTP_USER_AGENT"]))
 print("""
     <h1> Welcome, enter your username and password </h1>
 
-    <form method="POST" action="hello.py">
+    <form method="POST" action="login.py">
         <label> <span>Username:</span> <input autofocus type="text" name="username"></label> <br>
         <label> <span>Password:</span> <input type="password" name="password"></label>
 
@@ -51,23 +51,3 @@ if posted_bytes:
 
 print('</body>')
 print('</html>')
-
-
-if username != None and password != None and username == secret.username and password == secret.password:
-    print("Set-Cookie:UserID = XYZ\r\n")
-    print("Set-Cookie:Password = XYZ123\r\n")
-    print("Content-type:text/html\r\n\r\n")
-    print('<html>')
-    print('<head>')
-
-    print("""
-    <h1> Welcome, {username}! </h1>
-
-    <p> <small> Pst! I know your password is
-        <span class="spoilers"> {password}</span>.
-        </small>
-    </p>
-    """.format(username=username,
-            password=password))
-    print('</body>')
-    print('</html>')
