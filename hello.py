@@ -6,6 +6,11 @@ import sys
 cgitb.enable()
 import templates
 import secret
+username = None
+password = None
+
+
+
 print("Content-type:text/html\r\n\r\n")
 print('<html>')
 print('<head>')
@@ -42,12 +47,19 @@ if posted_bytes:
         username = login_info[0][login_info[0].find("=")+1:]
         password = login_info[1][login_info[1].find("=")+1:]
     print("</pre></p>")
+
+
 print('</body>')
 print('</html>')
 
-if username == secret.username and password == secret.password:
-    print("Set-Cookie:UserID = XYZ;\r\n")
-    print("Set-Cookie:Password = XYZ123;\r\n")
+
+if username != None and password != None and username == secret.username and password == secret.password:
+    print("Set-Cookie:UserID = XYZ\r\n")
+    print("Set-Cookie:Password = XYZ123\r\n")
+    print("Content-type:text/html\r\n\r\n")
+    print('<html>')
+    print('<head>')
+
     print("""
     <h1> Welcome, {username}! </h1>
 
@@ -56,4 +68,6 @@ if username == secret.username and password == secret.password:
         </small>
     </p>
     """.format(username=username,
-               password=password))
+            password=password))
+    print('</body>')
+    print('</html>')
